@@ -1,5 +1,5 @@
-import qrcode 
-from flask import Flask, request, render_template, send_file 
+import qrcode
+from flask import Flask, render_template, request, send_file
 
 app = Flask(__name__)
 
