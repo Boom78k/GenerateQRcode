@@ -1,0 +1,35 @@
+name: API CI/CD
+
+# 1. Когда запускать (Triggers)
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. Что именно делать (Jobs)
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Выделяем виртуальный сервер на Linux
+
+    # 3. Пошаговая инструкция (Steps)
+    steps:
+      - name: Скачиваем код репозитория
+        uses: actions/checkout@v4
+
+      - name: Устанавливаем Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Устанавливаем зависимости
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        
+      - name: Проверка кода линтером (Ruff)
+        run: ruff check .
+
+      - name: Запуск автотестов (Pytest)
+        run: pytest
+    
