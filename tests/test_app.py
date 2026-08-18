@@ -1,7 +1,8 @@
 import os
 import sys
-import pytest
 import tempfile
+
+import pytest
 
 #sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
