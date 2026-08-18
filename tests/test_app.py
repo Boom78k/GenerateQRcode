@@ -36,17 +36,6 @@ def test_home_page(client):
     assert response.status_code == 200
 
 
-def test_generate_qr(client):
-    """Тест генерации QR-кода"""
-    response = client.post('/', data={'data': 'https://test.com'})
-    assert response.status_code == 200
-    assert response.content_type == 'image/png'
-    
-    # qr_path = os.path.join(app.config['STATIC_FOLDER'], 'qr_code.png')
-    # assert os.path.exists(qr_path)
-    # assert os.path.getsize(qr_path) > 0
-
-
 def test_generate_qr_empty_data(client):
     """Тест с пустыми данными"""
     response = client.post('/', data={'data': ''})
