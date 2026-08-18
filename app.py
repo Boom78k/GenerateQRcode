@@ -6,7 +6,9 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def generate_qr():
     if request.method == "POST":
-        data = request.form["data"]
+        data = request.form.get("data")
+        if not data:
+            return "Data is required", 400
         qr_img = qrcode.make(data)
 
         qr_path = "static/qr_code.png"
